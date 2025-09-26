@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logan Freights - Health Check</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f9fafb;
+        }
+        .status {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .success { border-left: 4px solid #10b981; }
+        .info { border-left: 4px solid #3b82f6; }
+        .warning { border-left: 4px solid #f59e0b; }
+        pre { background: #f3f4f6; padding: 10px; border-radius: 4px; overflow: auto; }
+    </style>
+</head>
+<body>
+    <div class="status success">
+        <h1>✅ Logan Freights System - Health Check</h1>
+        <p><strong>Status:</strong> Static files are loading correctly</p>
+        <p><strong>Timestamp:</strong> <span id="timestamp"></span></p>
+        <p><strong>URL:</strong> <span id="url"></span></p>
+    </div>
+
+    <div class="status info">
+        <h2>System Information</h2>
+        <pre id="systemInfo"></pre>
+    </div>
+
+    <div class="status warning">
+        <h2>Next Steps</h2>
+        <ol>
+            <li>If you can see this page, your Vercel deployment is working</li>
+            <li>Go back to your main app URL (remove /health.html)</li>
+            <li>If you see a white screen, check the browser console for errors</li>
+            <li>Look for the debug panel in the bottom-right corner</li>
+        </ol>
+    </div>
+
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toISOString();
+        document.getElementById('url').textContent = window.location.href;
+        
+        const systemInfo = {
+            userAgent: navigator.userAgent,
+            viewport: `${window.innerWidth}x${window.innerHeight}`,
+            connection: navigator.connection ? navigator.connection.effectiveType : 'unknown',
+            language: navigator.language,
+            platform: navigator.platform,
+            cookieEnabled: navigator.cookieEnabled,
+            onLine: navigator.onLine
+        };
+        
+        document.getElementById('systemInfo').textContent = JSON.stringify(systemInfo, null, 2);
+    </script>
+</body>
+</html>
