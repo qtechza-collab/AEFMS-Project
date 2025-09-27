@@ -33,7 +33,7 @@ import { MyClaims } from './MyClaims';
 import { NotificationCenter } from './NotificationCenter';
 import { api } from '../utils/api';
 import { dataService } from '../utils/supabaseDataService';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 interface EmployeeDashboardProps {
   user: User;
