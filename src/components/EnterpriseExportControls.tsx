@@ -30,7 +30,7 @@ import {
   Loader2,
   Clock
 } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { enterpriseExportManager, type ExportData } from '../utils/enterpriseExportManager';
 import { enhancedClaimsManager } from '../utils/enhancedClaimsManager';
 import { format } from 'date-fns';
