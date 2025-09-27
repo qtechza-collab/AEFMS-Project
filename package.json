@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node optimize-build.js && node build-fix.js && vite build --outDir dist",
-    "build:prod": "NODE_ENV=production node optimize-build.js && node build-fix.js && vite build --outDir dist --mode production",
-    "build:vercel": "NODE_ENV=production node optimize-build.js && node build-fix.js && vite build --outDir dist --mode production",
+    "build": "node build-fix.js && vite build --outDir dist",
+    "build:prod": "NODE_ENV=production node build-fix.js && vite build --outDir dist --mode production",
+    "build:vercel": "NODE_ENV=production node build-fix.js && vite build --outDir dist --mode production",
     "build:analyze": "npm run build && npx vite-bundle-analyzer dist",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0", 
     "preview": "vite preview",
