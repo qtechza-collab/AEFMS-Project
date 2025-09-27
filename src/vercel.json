@@ -1,5 +1,5 @@
 {
-  "buildCommand": "vite build --outDir dist",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm install --legacy-peer-deps --no-audit --no-fund",
   "devCommand": "npm run dev",
@@ -53,5 +53,5 @@
       ]
     }
   ],
-  "regions": ["cpt1", "jnb1"]
+  "regions": ["iad1"]
 }
