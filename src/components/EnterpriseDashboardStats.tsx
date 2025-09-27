@@ -48,7 +48,7 @@ import {
   AreaChart,
   Area
 } from 'recharts';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { enterpriseDemoManager } from '../utils/enterpriseDemoManager';
 import { enterpriseNotificationHub } from '../utils/enterpriseNotificationHub';
 import { enhancedClaimsManager } from '../utils/enhancedClaimsManager';
