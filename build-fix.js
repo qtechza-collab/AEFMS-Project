@@ -90,11 +90,17 @@ if (fs.existsSync(viteConfigPath)) {
 // Verify Vercel config
 const vercelConfigPath = path.join(__dirname, 'vercel.json');
 if (fs.existsSync(vercelConfigPath)) {
-  const vercelConfig = JSON.parse(fs.readFileSync(vercelConfigPath, 'utf8'));
-  if (vercelConfig.outputDirectory === 'dist') {
-    console.log('✅ Vercel config correctly set to expect dist/');
-  } else {
-    console.log('⚠️ Vercel config outputDirectory:', vercelConfig.outputDirectory);
+  try {
+    const vercelConfig = JSON.parse(fs.readFileSync(vercelConfigPath, 'utf8'));
+    if (vercelConfig.outputDirectory === 'dist') {
+      console.log('✅ Vercel config correctly set to expect dist/');
+    } else if (vercelConfig.outputDirectory) {
+      console.log('⚠️ Vercel config outputDirectory:', vercelConfig.outputDirectory);
+    } else {
+      console.log('⚠️ Vercel config outputDirectory: not explicitly set (using default)');
+    }
+  } catch (error) {
+    console.log('❌ Failed to parse vercel.json:', error.message);
   }
 } else {
   console.log('❌ Vercel config not found');
