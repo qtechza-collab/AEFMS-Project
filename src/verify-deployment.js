@@ -85,10 +85,12 @@ try {
     warnings.push(`⚠️ Vercel build command not configured`);
   }
 
-  if (vercelJson.regions && vercelJson.regions.includes('cpt1')) {
-    success.push(`✅ South African region (cpt1) configured`);
+  if (vercelJson.regions && vercelJson.regions.includes('iad1')) {
+    success.push(`✅ Production region (iad1 - Washington D.C.) configured - optimal for global access`);
+  } else if (vercelJson.regions && vercelJson.regions.length > 0) {
+    success.push(`✅ Vercel region configured: ${vercelJson.regions.join(', ')}`);
   } else {
-    warnings.push(`⚠️ Consider adding cpt1 region for South African users`);
+    warnings.push(`⚠️ No specific region configured - will use Vercel default`);
   }
 
 } catch (error) {
@@ -163,11 +165,12 @@ if (errors.length > 0) {
 
 console.log('\n📋 DEPLOYMENT READINESS:');
 if (errors.length === 0) {
-  console.log('🎉 READY FOR DEPLOYMENT! No critical errors found.');
+  console.log('🎉 LOGAN FREIGHTS SYSTEM READY FOR DEPLOYMENT! No critical errors found.');
   console.log('\n🚀 Next steps:');
   console.log('1. Push to GitHub');
-  console.log('2. Deploy to Vercel');
+  console.log('2. Deploy to Vercel (Washington D.C. region)');
   console.log('3. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in Vercel environment variables');
+  console.log('4. System will be accessible globally with London Supabase backend');
   process.exit(0);
 } else {
   console.log('🚫 NOT READY FOR DEPLOYMENT! Please fix the errors above.');
