@@ -15,6 +15,11 @@
       "NODE_ENV": "production"
     }
   },
+  "functions": {
+    "src/**/*": {
+      "outputDirectory": "dist"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",
