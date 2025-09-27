@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Progress } from './ui/progress';
 import { Separator } from './ui/separator';
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { 
   Building2, Users, TrendingUp, Shield, Settings, 
   Database, ChevronRight, CheckCircle, AlertTriangle,
