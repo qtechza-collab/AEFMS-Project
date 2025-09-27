@@ -18,11 +18,11 @@ const logToConsole = (message: string, data?: any) => {
   console.log(`[Logan Freights] ${message}`, data || '');
   // Also try to display critical errors in the UI
   if (message.includes('ERROR') || message.includes('CRITICAL')) {
-    // Store errors in sessionStorage for debugging
+    // Store errors in memory instead of sessionStorage for Vercel compatibility
     try {
-      const errors = JSON.parse(sessionStorage.getItem('logan-errors') || '[]');
+      const errors = (window as any).__loganErrors || [];
       errors.push({ timestamp: new Date().toISOString(), message, data });
-      sessionStorage.setItem('logan-errors', JSON.stringify(errors.slice(-10))); // Keep last 10 errors
+      (window as any).__loganErrors = errors.slice(-10); // Keep last 10 errors
     } catch (e) {
       // Ignore storage errors
     }
@@ -46,6 +46,7 @@ export default function App() {
     const initializeApp = async () => {
       try {
         logToConsole('🚀 Starting Logan Freights Expense Management System...');
+        
         // Check if Supabase is configured
         const supabaseUrl = getEnvVar('VITE_SUPABASE_URL');
         const supabaseKey = getEnvVar('VITE_SUPABASE_ANON_KEY');
@@ -129,8 +130,6 @@ export default function App() {
       }
     };
   }, []);
-
-
 
   const handleLogin = async (email: string, password: string, role?: UserRole) => {
     try {
@@ -231,7 +230,7 @@ export default function App() {
               <div>User Agent: {navigator.userAgent}</div>
               <div>Supabase URL: {getEnvVar('VITE_SUPABASE_URL') ? 'Set' : 'Not Set'}</div>
               <div>Supabase Key: {getEnvVar('VITE_SUPABASE_ANON_KEY') ? 'Set' : 'Not Set'}</div>
-              <div>Errors: {sessionStorage.getItem('logan-errors') || 'None'}</div>
+              <div>Errors: {JSON.stringify((window as any).__loganErrors || [])}</div>
             </div>
           </details>
         </div>
