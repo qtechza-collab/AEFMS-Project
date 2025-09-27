@@ -1,15 +1,13 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { LoginPage } from './components/LoginPage';
+import { EmployeeDashboard } from './components/EmployeeDashboard';
+import { EmployerDashboard } from './components/EmployerDashboard';
+import { HRDashboard } from './components/HRDashboard';
+import { AdminDashboard } from './components/AdminDashboard';
 import { ConnectionStatus } from './components/ConnectionStatus';
 import { SupabaseConnection } from './components/SupabaseConnection';
 import { Toaster } from './components/ui/sonner';
-
-// Lazy load dashboard components for better code splitting
-const EmployeeDashboard = lazy(() => import('./components/EmployeeDashboard').then(m => ({ default: m.EmployeeDashboard })));
-const EmployerDashboard = lazy(() => import('./components/EmployerDashboard').then(m => ({ default: m.EmployerDashboard })));
-const HRDashboard = lazy(() => import('./components/HRDashboard').then(m => ({ default: m.HRDashboard })));
-const AdminDashboard = lazy(() => import('./components/AdminDashboard').then(m => ({ default: m.AdminDashboard })));
 // Production build - debugging components removed
 import { authService, User as AuthUser } from './utils/supabaseAuth';
 import { dataService } from './utils/supabaseDataService';
@@ -20,11 +18,11 @@ const logToConsole = (message: string, data?: any) => {
   console.log(`[Logan Freights] ${message}`, data || '');
   // Also try to display critical errors in the UI
   if (message.includes('ERROR') || message.includes('CRITICAL')) {
-    // Store errors in sessionStorage for debugging
+    // Store errors in memory instead of sessionStorage for Vercel compatibility
     try {
-      const errors = JSON.parse(sessionStorage.getItem('logan-errors') || '[]');
+      const errors = (window as any).__loganErrors || [];
       errors.push({ timestamp: new Date().toISOString(), message, data });
-      sessionStorage.setItem('logan-errors', JSON.stringify(errors.slice(-10))); // Keep last 10 errors
+      (window as any).__loganErrors = errors.slice(-10); // Keep last 10 errors
     } catch (e) {
       // Ignore storage errors
     }
@@ -48,6 +46,7 @@ export default function App() {
     const initializeApp = async () => {
       try {
         logToConsole('🚀 Starting Logan Freights Expense Management System...');
+        
         // Check if Supabase is configured
         const supabaseUrl = getEnvVar('VITE_SUPABASE_URL');
         const supabaseKey = getEnvVar('VITE_SUPABASE_ANON_KEY');
@@ -132,8 +131,6 @@ export default function App() {
     };
   }, []);
 
-
-
   const handleLogin = async (email: string, password: string, role?: UserRole) => {
     try {
       console.log('Attempting authentication with Supabase...');
@@ -172,33 +169,18 @@ export default function App() {
   const renderDashboard = () => {
     if (!user) return null;
 
-    const DashboardLoadingSpinner = () => (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading dashboard...</p>
-        </div>
-      </div>
-    );
-
-    return (
-      <Suspense fallback={<DashboardLoadingSpinner />}>
-        {(() => {
-          switch (user.role) {
-            case 'employee':
-              return <EmployeeDashboard user={user} onLogout={handleLogout} setUser={setUser} />;
-            case 'manager':
-              return <EmployerDashboard user={user} onLogout={handleLogout} setUser={setUser} />;
-            case 'hr':
-              return <HRDashboard user={user} onLogout={handleLogout} setUser={setUser} />;
-            case 'administrator':
-              return <AdminDashboard user={user} onLogout={handleLogout} setUser={setUser} />;
-            default:
-              return <EmployeeDashboard user={user} onLogout={handleLogout} setUser={setUser} />;
-          }
-        })()}
-      </Suspense>
-    );
+    switch (user.role) {
+      case 'employee':
+        return <EmployeeDashboard user={user} onLogout={handleLogout} setUser={setUser} />;
+      case 'manager':
+        return <EmployerDashboard user={user} onLogout={handleLogout} setUser={setUser} />;
+      case 'hr':
+        return <HRDashboard user={user} onLogout={handleLogout} setUser={setUser} />;
+      case 'administrator':
+        return <AdminDashboard user={user} onLogout={handleLogout} setUser={setUser} />;
+      default:
+        return <EmployeeDashboard user={user} onLogout={handleLogout} setUser={setUser} />;
+    }
   };
 
   if (isLoading) {
@@ -248,7 +230,7 @@ export default function App() {
               <div>User Agent: {navigator.userAgent}</div>
               <div>Supabase URL: {getEnvVar('VITE_SUPABASE_URL') ? 'Set' : 'Not Set'}</div>
               <div>Supabase Key: {getEnvVar('VITE_SUPABASE_ANON_KEY') ? 'Set' : 'Not Set'}</div>
-              <div>Errors: {sessionStorage.getItem('logan-errors') || 'None'}</div>
+              <div>Errors: {JSON.stringify((window as any).__loganErrors || [])}</div>
             </div>
           </details>
         </div>
