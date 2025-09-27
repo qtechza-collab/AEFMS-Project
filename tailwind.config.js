@@ -9,7 +9,13 @@ export default {
   ],
   darkMode: 'class',
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        // Logan Freights brand colors
+        'logan-navy': '#030213',
+        'logan-white': '#ffffff'
+      }
+    }
   },
   plugins: []
 }
