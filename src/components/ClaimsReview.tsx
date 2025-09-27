@@ -34,7 +34,7 @@ import {
   Archive,
   ArrowLeft
 } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { dataStore } from '../utils/dataStore';
 import { ImageViewer } from './ImageViewer';
 import { ClaimApprovalTester } from './ClaimApprovalTester';
