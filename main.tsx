@@ -62,7 +62,6 @@ try {
 
   // Create React root and render app
   const root = ReactDOM.createRoot(rootElement);
-
   root.render(
     <React.StrictMode>
       <App />
@@ -73,7 +72,6 @@ try {
 
   // Clean up loading screen after a short delay
   setTimeout(removeLoadingScreen, 50);
-
 } catch (error) {
   handleStartupError(error);
 }
