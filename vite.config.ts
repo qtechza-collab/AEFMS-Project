@@ -28,10 +28,7 @@ export default defineConfig({
 
   // CSS optimization
   css: {
-    devSourcemap: false,
-    postcss: {
-      plugins: []
-    }
+    devSourcemap: false
   },
 
   // Build configuration
