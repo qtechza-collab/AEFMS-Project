@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { LoginPage } from './components/LoginPage';
-import { EmployeeDashboard } from './components/EmployeeDashboard';
-import { EmployerDashboard } from './components/EmployerDashboard';
-import { HRDashboard } from './components/HRDashboard';
-import { AdminDashboard } from './components/AdminDashboard';
-import { ConnectionStatus } from './components/ConnectionStatus';
-import { SupabaseConnection } from './components/SupabaseConnection';
-import { Toaster } from './components/ui/sonner';
+import { ErrorBoundary } from './src/components/ErrorBoundary';
+import { LoginPage } from './src/components/LoginPage';
+import { EmployeeDashboard } from './src/components/EmployeeDashboard';
+import { EmployerDashboard } from './src/components/EmployerDashboard';
+import { HRDashboard } from './src/components/HRDashboard';
+import { AdminDashboard } from './src/components/AdminDashboard';
+import { ConnectionStatus } from './src/components/ConnectionStatus';
+import { SupabaseConnection } from './src/components/SupabaseConnection';
+import { Toaster } from './src/components/ui/sonner';
 // Production build - debugging components removed
-import { authService, User as AuthUser } from './utils/supabaseAuth';
-import { dataService } from './utils/supabaseDataService';
-import { getEnvVar } from './utils/env';
+import { authService, User as AuthUser } from './src/utils/supabaseAuth';
+import { dataService } from './src/utils/supabaseDataService';
+import { getEnvVar } from './src/utils/env';
 
 // Enhanced error logging for production debugging
 const logToConsole = (message: string, data?: any) => {
