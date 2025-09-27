@@ -1,6 +1,6 @@
 import { dataService } from './supabaseDataService';
-import { enhancedClaimsDataService } from './enhancedClaimsDataService';
 import type { ExpenseClaim } from './supabaseDataService';
+// Dynamic import for enhancedClaimsDataService to avoid static/dynamic import mixing
 
 export interface ExportData {
   claims: ExpenseClaim[];
