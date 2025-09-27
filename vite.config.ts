@@ -26,6 +26,14 @@ export default defineConfig({
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },
 
+  // CSS optimization
+  css: {
+    devSourcemap: false,
+    postcss: {
+      plugins: []
+    }
+  },
+
   // Build configuration
   build: {
     outDir: 'dist',
@@ -33,48 +41,84 @@ export default defineConfig({
     sourcemap: false,
     target: 'es2020',
     minify: 'terser',
-    chunkSizeWarningLimit: 1000, // Increase threshold to 1MB for Logan Freights comprehensive system
+    chunkSizeWarningLimit: 500, // Reduce warning threshold to optimize for better performance
     rollupOptions: {
       output: {
         manualChunks: {
           // Core React libraries
-          vendor: ['react', 'react-dom'],
+          'vendor-react': ['react', 'react-dom'],
           
-          // Radix UI components (split into smaller chunks)
+          // Radix UI components (split into more specific chunks)
           'radix-core': [
             '@radix-ui/react-dialog', 
             '@radix-ui/react-dropdown-menu', 
             '@radix-ui/react-select',
-            '@radix-ui/react-popover',
-            '@radix-ui/react-tabs'
+            '@radix-ui/react-popover'
           ],
           'radix-forms': [
             '@radix-ui/react-checkbox',
             '@radix-ui/react-radio-group',
             '@radix-ui/react-switch',
-            '@radix-ui/react-slider'
+            '@radix-ui/react-slider',
+            'react-hook-form',
+            'react-day-picker'
           ],
           'radix-layout': [
             '@radix-ui/react-accordion',
             '@radix-ui/react-collapsible',
             '@radix-ui/react-separator',
-            '@radix-ui/react-scroll-area'
+            '@radix-ui/react-scroll-area',
+            '@radix-ui/react-tabs'
+          ],
+          'radix-misc': [
+            '@radix-ui/react-avatar',
+            '@radix-ui/react-badge',
+            '@radix-ui/react-tooltip',
+            '@radix-ui/react-toast',
+            '@radix-ui/react-progress'
           ],
           
           // Data and API
-          supabase: ['@supabase/supabase-js'],
+          'vendor-supabase': ['@supabase/supabase-js'],
           
-          // Charts and utilities
-          charts: ['recharts'],
-          utils: ['lucide-react', 'date-fns', 'clsx', 'class-variance-authority'],
+          // Charts and data visualization  
+          'vendor-charts': ['recharts'],
           
-          // Form handling
-          forms: ['react-hook-form', 'react-day-picker'],
+          // Utilities
+          'vendor-utils': ['lucide-react', 'date-fns', 'clsx', 'class-variance-authority', 'tailwind-merge'],
           
-          // Large dashboard components (dynamically chunked)
-          dashboards: (id) => {
-            if (id.includes('Dashboard') || id.includes('Management')) {
-              return 'dashboards';
+          // UI System
+          'vendor-ui': ['cmdk', 'sonner', 'vaul', 'input-otp'],
+          
+          // Dashboard components (dynamic chunking by role)
+          'dashboard-employee': (id) => {
+            if (id.includes('EmployeeDashboard') || id.includes('Employee') && id.includes('Dashboard')) {
+              return 'dashboard-employee';
+            }
+          },
+          'dashboard-manager': (id) => {
+            if (id.includes('EmployerDashboard') || id.includes('Manager') && id.includes('Dashboard')) {
+              return 'dashboard-manager';
+            }
+          },
+          'dashboard-hr': (id) => {
+            if (id.includes('HRDashboard') || id.includes('HR') && id.includes('Dashboard')) {
+              return 'dashboard-hr';
+            }
+          },
+          'dashboard-admin': (id) => {
+            if (id.includes('AdminDashboard') || id.includes('Admin') && id.includes('Dashboard')) {
+              return 'dashboard-admin';
+            }
+          },
+          
+          // Shared components
+          'components-shared': (id) => {
+            if (id.includes('components/') && 
+                !id.includes('Dashboard') && 
+                !id.includes('ui/') &&
+                (id.includes('Claims') || id.includes('Expense') || id.includes('Financial'))) {
+              return 'components-shared';
             }
           }
         }
