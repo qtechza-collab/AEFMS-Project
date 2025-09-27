@@ -136,7 +136,7 @@ New users must be registered through the admin dashboard:
 
 ### Performance Optimizations
 - CDN deployment via Vercel Edge Network
-- South African regions prioritized (CPT1, JNB1)
+- South African regions prioritized (IAD1)
 - Optimized bundle sizes with Vite
 - Lazy loading for large components
 - Efficient database indexing
@@ -177,7 +177,7 @@ SELECT cleanup_old_data();
 ## Regional Considerations (South Africa)
 
 ### Internet Optimization
-- Vercel Edge Network serves from Johannesburg (JNB1) and Cape Town (CPT1)
+- Vercel Edge Network serves from Johannesburg (JNB1) and Cape Town (IAD1)
 - Images optimized for slower connections
 - Lazy loading implemented for better performance
 - Offline-first approach for expense submissions
