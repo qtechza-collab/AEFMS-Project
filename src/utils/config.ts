@@ -67,12 +67,12 @@ export const isConfigured = () => !isDemoMode();
 
 // Helper function to get the correct API base URL
 export const getApiBaseUrl = () => {
-  if (config.api.baseUrl !== 'https://your-project.supabase.co/functions/v1/make-server-6223d981') {
+  if (config.api.baseUrl !== 'https://lrwfehxhophofxcxohsc.supabase.co/functions/v1/make-server-6223d981') {
     return config.api.baseUrl;
   }
   
   // If not configured, try to construct from Supabase URL
-  if (config.supabase.url !== 'https://your-project.supabase.co') {
+  if (config.supabase.url !== 'https://lrwfehxhophofxcxohsc.supabase.co') {
     return `${config.supabase.url}/functions/v1/make-server-6223d981`;
   }
   
