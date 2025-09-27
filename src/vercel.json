@@ -18,6 +18,9 @@
   "functions": {
     "src/**/*": {
       "outputDirectory": "dist"
+    },
+    "app/**/*.{js,ts}": {
+      "regions": ["iad1"]
     }
   },
   "rewrites": [
