@@ -13,9 +13,46 @@ const __dirname = path.dirname(__filename);
 console.log('🔧 Logan Freights Build Fix Script');
 console.log('==================================');
 
-// Check if build directory exists and clean it up
+// Check and create necessary files and directories
 const buildDir = path.join(__dirname, 'build');
 const distDir = path.join(__dirname, 'dist');
+
+// Check main.tsx exists
+const mainTsxPath = path.join(__dirname, 'main.tsx');
+if (!fs.existsSync(mainTsxPath)) {
+  console.error('❌ CRITICAL: main.tsx not found!');
+  process.exit(1);
+} else {
+  console.log('✅ main.tsx exists');
+}
+
+// Check App.tsx exists  
+const appTsxPath = path.join(__dirname, 'App.tsx');
+if (!fs.existsSync(appTsxPath)) {
+  console.error('❌ CRITICAL: App.tsx not found!');
+  process.exit(1);
+} else {
+  console.log('✅ App.tsx exists');
+}
+
+// Check index.html exists
+const indexHtmlPath = path.join(__dirname, 'index.html');
+if (!fs.existsSync(indexHtmlPath)) {
+  console.error('❌ CRITICAL: index.html not found!');
+  process.exit(1);
+} else {
+  console.log('✅ index.html exists');
+  
+  // Verify index.html has correct script src
+  const indexContent = fs.readFileSync(indexHtmlPath, 'utf8');
+  if (indexContent.includes('src="./main.tsx"')) {
+    console.log('✅ index.html has correct main.tsx import path');
+  } else if (indexContent.includes('src="/main.tsx"')) {
+    console.log('⚠️ index.html has absolute path - this might cause build issues');
+  } else {
+    console.log('❌ index.html missing main.tsx import!');
+  }
+}
 
 if (fs.existsSync(buildDir)) {
   console.log('⚠️ Found incorrect build/ directory, cleaning up...');
