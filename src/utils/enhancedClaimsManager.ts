@@ -1,6 +1,6 @@
 import { dataService } from './supabaseDataService';
 import type { ExpenseClaim } from './supabaseDataService';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 /**
  * Enhanced Claims Manager for Logan Freights
