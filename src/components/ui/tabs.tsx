@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import * as TabsPrimitive from "@radix-ui/react-tabs@1.1.3";
-
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "./utils";
 
 const Tabs = React.forwardRef<
