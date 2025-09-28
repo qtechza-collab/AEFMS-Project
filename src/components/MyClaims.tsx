@@ -20,7 +20,7 @@ import {
 import { ClaimsViewer, Claim } from './ClaimsViewer';
 import { api } from '../utils/api';
 import { dataService } from '../utils/supabaseDataService';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { enhancedClaimsManager } from '../utils/enhancedClaimsManager';
 
 interface MyClaim {
