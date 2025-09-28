@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Toaster as Sonner, ToasterProps } from "sonner@2.0.3";
+import { Toaster as Sonner, ToasterProps } from "sonner";
 
 const Toaster = ({ ...props }: ToasterProps) => {
   // Default to light theme since we don't have next-themes
