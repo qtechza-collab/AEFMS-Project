@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { Textarea } from './ui/textarea';
 import { CheckCircle, XCircle, Clock, AlertTriangle, MessageSquare, Send } from 'lucide-react';
 import { realtimeApprovalSystem } from '../utils/realtimeApprovalSystem';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 interface QuickApprovalButtonsProps {
   claim: {
