@@ -16,7 +16,7 @@ import {
   Download,
   Camera
 } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { imageStorage } from '../utils/imageStorage';
 import { cloudReceiptStorage } from '../utils/cloudReceiptStorage';
 import { ImageViewer } from './ImageViewer';
