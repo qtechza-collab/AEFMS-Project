@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { 
   User, 
   Camera, 
