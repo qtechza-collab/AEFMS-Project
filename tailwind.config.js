@@ -1,24 +1,31 @@
-/** @type {import('tailwindcss').Config} */
+/ @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",  // This will catch ALL files in src/
+    "./src/App.tsx",
+    "./src/main.tsx",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/utils/**/.{js,ts,jsx,tsx}"
   ],
-  
+
   theme: {
     extend: {
       // Logan Freights brand colors
       colors: {
         // Primary brand colors
         primary: {
-          DEFAULT: '#030213', // Logan Freights Navy
-          foreground: '#ffffff'
+          DEFAULT: '
+#030213', // Logan Freights Navy
+          foreground: '
+#ffffff'
         },
-        
+
         // Logan Freights palette
-        'logan-navy': '#030213',
-        'logan-white': '#ffffff',
-        
+        'logan-navy': '
+#030213',
+        'logan-white': '
+#ffffff',
+
         // Functional colors
         background: 'var(--background)',
         foreground: 'var(--foreground)',
@@ -49,7 +56,7 @@ export default {
         border: 'var(--border)',
         input: 'var(--input)',
         ring: 'var(--ring)',
-        
+
         // Chart colors for financial analytics
         chart: {
           1: 'var(--chart-1)',
@@ -58,7 +65,7 @@ export default {
           4: 'var(--chart-4)',
           5: 'var(--chart-5)'
         },
-        
+
         // Sidebar colors
         sidebar: {
           DEFAULT: 'var(--sidebar)',
@@ -71,23 +78,23 @@ export default {
           ring: 'var(--sidebar-ring)'
         }
       },
-      
+
       // Logan Freights typography (following guidelines)
       fontSize: {
         'base': ['16px', { lineHeight: '1.5' }], // Accessible base size
       },
-      
+
       fontWeight: {
         normal: 'var(--font-weight-normal)',
         medium: 'var(--font-weight-medium)'
       },
-      
+
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
       },
-      
+
       // South African business context
       screens: {
         'mobile': '375px',   // Common SA mobile breakpoint
@@ -95,13 +102,13 @@ export default {
         'laptop': '1024px',  // Laptop breakpoint
         'desktop': '1280px'  // Desktop breakpoint
       },
-      
+
       // Logan Freights spacing system
       spacing: {
         '18': '4.5rem',   // Custom spacing for forms
         '88': '22rem',    // Custom spacing for cards
       },
-      
+
       // Animation for loading states
       animation: {
         'spin-slow': 'spin 3s linear infinite',
@@ -109,14 +116,14 @@ export default {
       }
     }
   },
-  
+
   plugins: [],
-  
+
   // Enable all Tailwind features
   future: {
     hoverOnlyWhenSupported: true,
   },
-  
+
   // Safelist important Logan Freights classes
   safelist: [
     'bg-logan-navy',
