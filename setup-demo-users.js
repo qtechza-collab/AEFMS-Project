@@ -3,10 +3,10 @@
 // Usage: node setup-demo-users.js
 
 import { createClient } from 'supabase/supabase-js';
-import dotenv from 'dotenv';
+
 
 // Load environment variables from .env.local
-dotenv.config({ path: '.env.local' });
+
 
 // Get credentials from environment variables
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
