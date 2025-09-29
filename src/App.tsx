@@ -9,7 +9,7 @@ import { ConnectionStatus } from './components/ConnectionStatus';
 import { SupabaseConnection } from './components/SupabaseConnection';
 import { Toaster } from './components/ui/sonner';
 // Production build - debugging components removed
-import { authService, User as AuthUser } from './src/utils/supabaseAuth';
+import { authService, User as AuthUser } from './utils/supabaseAuth';
 import { dataService } from './utils/supabaseDataService';
 import { getEnvVar } from './utils/env';
 
