@@ -8,25 +8,17 @@ export default {
     "./src/utils/**/.{js,ts,jsx,tsx}"
   ],
 
-  theme: {
+theme: {
     extend: {
-      // Logan Freights brand colors
       colors: {
-        // Primary brand colors
         primary: {
-          DEFAULT: '
-#030213', // Logan Freights Navy
-          foreground: '
-#ffffff'
+          DEFAULT: '#030213',
+          foreground: '#ffffff'
         },
-
-        // Logan Freights palette
-        'logan-navy': '
-#030213',
-        'logan-white': '
-#ffffff',
-
-        // Functional colors
+        
+        'logan-navy': '#030213',
+        'logan-white': '#ffffff',
+        
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         card: {
@@ -56,8 +48,7 @@ export default {
         border: 'var(--border)',
         input: 'var(--input)',
         ring: 'var(--ring)',
-
-        // Chart colors for financial analytics
+        
         chart: {
           1: 'var(--chart-1)',
           2: 'var(--chart-2)',
@@ -65,8 +56,7 @@ export default {
           4: 'var(--chart-4)',
           5: 'var(--chart-5)'
         },
-
-        // Sidebar colors
+        
         sidebar: {
           DEFAULT: 'var(--sidebar)',
           foreground: 'var(--sidebar-foreground)',
@@ -78,53 +68,47 @@ export default {
           ring: 'var(--sidebar-ring)'
         }
       },
-
-      // Logan Freights typography (following guidelines)
+      
       fontSize: {
-        'base': ['16px', { lineHeight: '1.5' }], // Accessible base size
+        'base': ['16px', { lineHeight: '1.5' }],
       },
-
+      
       fontWeight: {
         normal: 'var(--font-weight-normal)',
         medium: 'var(--font-weight-medium)'
       },
-
+      
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
       },
-
-      // South African business context
+      
       screens: {
-        'mobile': '375px',   // Common SA mobile breakpoint
-        'tablet': '768px',   // Tablet breakpoint
-        'laptop': '1024px',  // Laptop breakpoint
-        'desktop': '1280px'  // Desktop breakpoint
+        'mobile': '375px',
+        'tablet': '768px',
+        'laptop': '1024px',
+        'desktop': '1280px'
       },
-
-      // Logan Freights spacing system
+      
       spacing: {
-        '18': '4.5rem',   // Custom spacing for forms
-        '88': '22rem',    // Custom spacing for cards
+        '18': '4.5rem',
+        '88': '22rem',
       },
-
-      // Animation for loading states
+      
       animation: {
         'spin-slow': 'spin 3s linear infinite',
         'pulse-soft': 'pulse 3s ease-in-out infinite'
       }
     }
   },
-
+  
   plugins: [],
-
-  // Enable all Tailwind features
+  
   future: {
     hoverOnlyWhenSupported: true,
   },
-
-  // Safelist important Logan Freights classes
+  
   safelist: [
     'bg-logan-navy',
     'text-logan-navy',
