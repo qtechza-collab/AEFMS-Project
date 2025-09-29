@@ -2,11 +2,24 @@
 // Run this script ONCE to create demo users in Supabase
 // Usage: node setup-demo-users.js
 
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from 'supabase/supabase-js';
+import dotenv from 'dotenv';
 
-// IMPORTANT: Replace these with your actual credentials
-const SUPABASE_URL = 'https://your-project.supabase.co';
-const SUPABASE_SERVICE_ROLE_KEY = 'your-service-role-key-here';
+// Load environment variables from .env.local
+dotenv.config({ path: '.env.local' });
+
+// Get credentials from environment variables
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
+const SUPABASE_SERVICE_ROLE_KEY = process.env.VITE_SUPABASE_SERVICE_ROLE_KEY;
+
+// Validate credentials
+if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+  console.error('❌ Error: Missing environment variables!');
+  console.error('Please make sure .env.local contains:');
+  console.error('  VITE_SUPABASE_URL=your-url');
+  console.error('  VITE_SUPABASE_SERVICE_ROLE_KEY=your-service-role-key');
+  process.exit(1);
+}
 
 // Initialize Supabase Admin client
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
