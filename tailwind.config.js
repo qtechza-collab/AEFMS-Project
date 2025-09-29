@@ -4,7 +4,7 @@ export default {
     "./index.html",
     "./src/App.tsx",
     "./src/main.tsx",
-    "src/components/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
     "./src/utils/**/.{js,ts,jsx,tsx}"
   ],
 
