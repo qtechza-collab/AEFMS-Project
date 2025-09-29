@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import './styles/globals.css' 
+import './styles/global.css'
+import './index.css'  // Change from './styles/global.css' 
 
 // Enhanced error handling for production
 const handleStartupError = (error: any) => {
